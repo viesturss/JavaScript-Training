@@ -6,3 +6,13 @@
 // Resources:
 // https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 // https://pmav.eu/stuff/javascript-game-of-life-v3.1.1/
+
+//
+// 1) Make grid
+// 2) iteration
+// 3) 4 rules game of lifes
+//
+// write tests
+// input state for grid
+// input provider
+//
