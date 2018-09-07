@@ -21,17 +21,15 @@ class GameOfLife {
   }
 
   _generateNewGrid() {
-    return this.grid.reduce((newGrid, row, rowIndex) => {
-      const reducer = (newRow, alive, columnIndex) => {
+    return this.grid.map((row, rowIndex) => {
+      return row.map((alive, columnIndex) => {
         const neighbours = this._countNeighbours(rowIndex, columnIndex);
 
         const { action, value } = this._getActionAndValue(alive, neighbours);
         action && this.provider[action](rowIndex, columnIndex);
-        return [...newRow, value];
-      };
-
-      return [...newGrid, row.reduce(reducer, [])];
-    }, []);
+        return value;
+      });
+    });
   }
 
   _getActionAndValue(alive, neighbours) {
