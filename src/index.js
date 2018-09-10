@@ -14,10 +14,14 @@ class GameOfLife {
 
   start() {
     this._iterate();
+    setInterval(() => {
+      this._iterate();
+    }, 1000);
   }
 
   _iterate() {
-    this.provider.onIteration(this._generateNewGrid());
+    this.grid = this._generateNewGrid();
+    this.provider.onIteration(this.grid);
   }
 
   _generateNewGrid() {

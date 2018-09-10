@@ -1,5 +1,5 @@
 const fixtures = require("./fixtures");
-const { GameOfLife } = require("./index");
+const { GameOfLife } = require("./");
 
 class TestProvider {
   constructor() {
@@ -12,22 +12,40 @@ class TestProvider {
 }
 
 describe("GameOfLife", () => {
+  const copySetInterval = setInterval;
+  afterEach(() => {
+    setInterval = copySetInterval;
+  });
+
   it("should initialize", () => {
     const provider = new TestProvider();
     const life = new GameOfLife(fixtures.onIteration.given, provider);
 
     expect(life).toBeInstanceOf(GameOfLife);
-    expect(life.size).toBe(5);
+    expect(life.size).toBe(7);
     expect(life.grid).toEqual(fixtures.onIteration.given);
     expect(life.provider).toEqual(provider);
   });
 
   it("#onIteration", () => {
+    const { given, iter1, iter2, iter3, iter4, iter5 } = fixtures.onIteration;
     const provider = new TestProvider();
-    const life = new GameOfLife(fixtures.onIteration.given, provider);
+    const life = new GameOfLife(given, provider);
+
+    setInterval = (callback, interval) => {
+      for (let i = 0; i < 4; i++) {
+        callback();
+      }
+    };
+
     life.start();
 
-    expect(provider.onIteration).toBeCalledWith(fixtures.onIteration.expected);
+    expect(provider.onIteration).toHaveBeenCalledTimes(5);
+    expect(provider.onIteration).toHaveBeenNthCalledWith(1, iter1);
+    expect(provider.onIteration).toHaveBeenNthCalledWith(2, iter2);
+    expect(provider.onIteration).toHaveBeenNthCalledWith(3, iter3);
+    expect(provider.onIteration).toHaveBeenNthCalledWith(4, iter4);
+    expect(provider.onIteration).toHaveBeenNthCalledWith(5, iter5);
   });
 
   it("#onIsolation", () => {
