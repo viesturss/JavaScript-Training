@@ -11,10 +11,10 @@ export default class GameOfLife {
     this._setConfig(config);
   }
 
-  start() {
+  start = () => {
     this._iterate();
     setInterval(this._iterate, this.speed);
-  }
+  };
   pause = () => {};
   restart = () => {};
 
