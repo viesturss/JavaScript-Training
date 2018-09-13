@@ -13,10 +13,19 @@ export default class GameOfLife {
 
   start = () => {
     this._iterate();
-    setInterval(this._iterate, this.speed);
+    if (this.interval) clearInterval(this.interval);
+    this.interval = setInterval(this._iterate, this.speed);
   };
-  pause = () => {};
-  restart = () => {};
+
+  pause = () => {
+    if (this.interval) clearInterval(this.interval);
+    this.interval = null;
+  };
+
+  restart = config => {
+    this._setConfig(config);
+    this.start();
+  };
 
   _iterate = () => {
     this.grid = this._generateNewGrid();

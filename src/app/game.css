@@ -1,3 +1,43 @@
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.grid {
+  display: inline-flex;
+  flex-direction: column;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 10px;
+  height: 10px;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+.cell.alive {
+  background-color: #bada55;
+}
+.cell.dead {
+  background-color: #fa0000;
+}
+
+.info {
+  display: flex;
+  min-height: 375px;
+  justify-content: space-between;
+}
+
+.config {
+  margin-right: 20px;
+}
+
 form label,
 form input {
   display: block;
@@ -11,4 +51,7 @@ td {
   padding: 8px;
   min-width: 40px;
   text-align: center;
+}
+tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
 }
