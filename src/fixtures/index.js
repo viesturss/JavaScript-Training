@@ -1,7 +1,13 @@
-module.exports = {
-  onIteration: require("./onIteration"),
-  onIsolation: require("./onIsolation"),
-  onLive: require("./onLive"),
-  onOverPopulation: require("./onOverPopulation"),
-  onReproduction: require("./onReproduction")
+import onIteration from "./onIteration";
+import onIsolation from "./onIsolation";
+import onLive from "./onLive";
+import onOverPopulation from "./onOverPopulation";
+import onReproduction from "./onReproduction";
+
+export default {
+  onIteration,
+  onIsolation,
+  onLive,
+  onOverPopulation,
+  onReproduction
 };
