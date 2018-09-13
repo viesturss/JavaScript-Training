@@ -4,18 +4,19 @@ const POSITIONS = [
   [ 0, -1],          [ 0, 1],
   [ 1, -1], [ 1, 0], [ 1, 1]
 ];
+const DEFAULT_SPEED = 1000;
 
 export default class GameOfLife {
-  constructor(initialGrid, provider) {
-    this.grid = [...initialGrid];
-    this.provider = provider;
-    this.size = this.grid.length;
+  constructor(config) {
+    this._setConfig(config);
   }
 
   start() {
     this._iterate();
-    setInterval(this._iterate, 1000);
+    setInterval(this._iterate, this.speed);
   }
+  pause = () => {};
+  restart = () => {};
 
   _iterate = () => {
     this.grid = this._generateNewGrid();
@@ -76,6 +77,14 @@ export default class GameOfLife {
   };
 
   _outOfBounds = (posX, posY) => {
-    return posX < 0 || posY < 0 || posX >= this.size || posY >= this.size;
+    return posX < 0 || posY < 0 || posX >= this.sizeX || posY >= this.sizeY;
+  };
+
+  _setConfig = ({ provider, sizeX, sizeY, speed }) => {
+    this.provider = provider;
+    this.grid = this.provider.grid(sizeX, sizeY);
+    this.sizeX = this.grid[0].length;
+    this.sizeY = this.grid.length;
+    this.speed = speed || DEFAULT_SPEED;
   };
 }
