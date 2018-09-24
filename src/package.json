@@ -1,0 +1,26 @@
+{
+  "name": "game-of-life",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch",
+    "dev": "webpack -w --config webpack.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "7.0.1",
+    "@babel/plugin-proposal-class-properties": "7.0.0",
+    "@babel/preset-env": "7.0.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "9.0.0",
+    "babel-jest": "23.6.0",
+    "babel-loader": "8.0.2",
+    "eslint": "5.5.0",
+    "eslint-plugin-jest": "21.22.0",
+    "jest": "23.6.0",
+    "webpack": "4.18.1",
+    "webpack-cli": "3.1.0"
+  }
+}
