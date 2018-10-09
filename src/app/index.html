@@ -11,47 +11,46 @@
 </head>
 
 <body>
-  <span>
-
-    <div class="info">
-      <div id="config">
-        <form>
-          <div>
-            <label for="sizeX">Size X</label>
-            <input type="number" name="sizeX" id="sizeX">
-          </div>
-          <div>
-            <label for="sizeY">Size Y</label>
-            <input type="number" name="sizeY" id="sizeY">
-          </div>
-          <div>
-            <label for="speed">Speed</label>
-            <input type="number" name="speed" id="speed">
-          </div>
-          <div>
-            <button type="submit">Update</button>
-            <button type="button" id="pause">Pause</button>
-          </div>
-        </form>
-      </div>
-
-      <table id="changelog">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Isolation</th>
-            <th>Live</th>
-            <th>Over Population</th>
-            <th>Reproduction</th>
-          </tr>
-        </thead>
-
-        <tbody></tbody>
-      </table>
+  <div class="info">
+    <div id="config">
+      <form>
+        <div>
+          <label for="sizeX">Size X</label>
+          <input type="number" name="sizeX" id="sizeX">
+        </div>
+        <div>
+          <label for="sizeY">Size Y</label>
+          <input type="number" name="sizeY" id="sizeY">
+        </div>
+        <div>
+          <label for="speed">Speed</label>
+          <input type="number" name="speed" id="speed">
+        </div>
+        <div>
+          <button type="submit">Update</button>
+          <button type="button" id="pause">Pause</button>
+        </div>
+      </form>
     </div>
 
-    <div id="game" class="grid"></div>
-  </span>
+    <div id="grid" class="grid-container">
+      <div class="grid"></div>
+    </div>
+
+    <table id="changelog">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Isolation</th>
+          <th>Live</th>
+          <th>Over Population</th>
+          <th>Reproduction</th>
+        </tr>
+      </thead>
+
+      <tbody></tbody>
+    </table>
+  </div>
 
   <script src="dist/main.js"></script>
 </body>

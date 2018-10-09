@@ -8,12 +8,20 @@ const POSITIONS = [
 const DEFAULT_SPEED = 1000;
 
 class GameOfLife {
-  constructor({ provider, sizeX, sizeY, speed }) {
+  constructor(config) {
+    this._setConfig(config);
+  }
+
+  _setConfig({ provider, sizeX, sizeY, speed }) {
     this.grid = provider.grid(sizeX, sizeY);
     this.provider = provider;
     this.sizeY = this.grid.length;
     this.sizeX = this.grid[0].length;
     this.speed = speed || DEFAULT_SPEED;
+  }
+
+  isPaused() {
+    return this.intervalId == null;
   }
 
   start() {
@@ -27,7 +35,10 @@ class GameOfLife {
     this.intervalId = null;
   }
 
-  restart(config) {}
+  restart(config) {
+    this._setConfig(config);
+    //this.start();
+  }
 
   _iterate() {
     this.grid = this.grid.map((row, rowIndex) => {
@@ -37,11 +48,15 @@ class GameOfLife {
         if (cell) {
           if (this._isIsolation(neighbourCount)) {
             this.provider.onIsolation(rowIndex, colIndex);
-          } else if (this._isLive(neighbourCount)) {
+            return false;
+          }
+          if (this._isLive(neighbourCount)) {
             this.provider.onLive(rowIndex, colIndex);
             return true;
-          } else if (this._isOverPopulation(neighbourCount)) {
+          }
+          if (this._isOverPopulation(neighbourCount)) {
             this.provider.onOverPopulation(rowIndex, colIndex);
+            return false;
           }
         } else {
           if (this._isReproduction(neighbourCount)) {

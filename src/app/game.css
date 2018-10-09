@@ -12,3 +12,30 @@ td {
   min-width: 40px;
   text-align: center;
 }
+
+.grid-container {
+  background: #efefef;
+}
+.grid {
+  display: inline-block;
+  width: 800px;
+}
+.grid-row {
+  width: 100%;
+  display: table;
+}
+.grid-cell {
+  display: table-cell;
+}
+.grid-cell--alive {
+  background-color: black;
+}
+.grid-cell--dead {
+  background-color: white;
+}
+.grid-cell::before {
+  content: "";
+  padding-top: 100%;
+  display: block;
+  border: 1px solid #efefef;
+}
