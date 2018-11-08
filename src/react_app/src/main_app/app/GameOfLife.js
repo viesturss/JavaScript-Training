@@ -7,7 +7,7 @@ const POSITIONS = [
 
 const DEFAULT_SPEED = 1000;
 
-class GameOfLife {
+export default class GameOfLife {
   constructor(config) {
     this._setConfig(config);
   }
@@ -37,7 +37,7 @@ class GameOfLife {
 
   restart(config) {
     this._setConfig(config);
-    //this.start();
+    this.start();
   }
 
   _iterate() {
@@ -101,5 +101,3 @@ class GameOfLife {
     return neighbourCount === 3;
   }
 }
-
-module.exports = GameOfLife;
